@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Box, Button, Input, Stack, Text, Flex } from "@chakra-ui/react";
+import { Box, Button, Input, Stack, Text, Flex, Icon} from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 import { toaster } from "@/components/ui/toaster";
+import { Mail, Key } from 'lucide-react';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -88,18 +89,25 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <Flex className="login_background">
-      <Box className="login_container">
+    <Flex className="login_background" direction="column" align="center" justify="center" minHeight="100vh">
+      <Box className="login_container"  p={4} boxShadow="md" borderRadius="md" w="100%" maxW="400px">
         <Stack>
           <Text className="login-header">Login</Text>
           <hr className="hr_login" />
+          
+          <Flex direction="row" align="center" justify="space-around" mb={2}>
+          <Mail size={24}/>
           <Input
             className="normal_imput_text"
             placeholder="Digite seu email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
-          />
+          />   
+          </Flex>
+          
+          <Flex direction="row" align="center" justify="space-around" mb={2} >        
+          <Key size={24}/> 
           <Input
             className="normal_imput_text"
             placeholder="Digite sua senha"
@@ -108,6 +116,8 @@ const LoginPage: React.FC = () => {
             type="password"
             onKeyDown={handleKeyPress} // Adicionando o evento onKeyDown para detectar a tecla Enter
           />
+          </Flex>
+          
           <Button
             className="bt_singin"
             colorScheme="blue"
